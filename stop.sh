@@ -1,9 +1,9 @@
 #!/bin/bash
-imageNameFlag="--image"
 containerNameFlag="--container"
+canRemoveFlag="--remove"
 
-imageName="my-image"
 containerName="my-server"
+canRemove=false
 
 for arg in "$@"
 do
@@ -14,12 +14,12 @@ do
 
   case $flag in
 
-    $imageNameFlag)
-      imageName="$value"
+    $containerNameFlag)
+      containerName="$value"
       ;;
 
-    $containerNameFlag)
-      export containerName="$value"
+    $canRemoveFlag)
+      canRemove=true
       ;;
 
     *)
@@ -28,5 +28,9 @@ do
   esac
 done
 
-docker build . -t "$imageName"
-docker run -it -p 80:3000 --name "$containerName" "$imageName"
+docker container stop "$containerName"
+
+if [[ "$canRemove" = true ]]
+then
+  docker container rm "$containerName"
+fi

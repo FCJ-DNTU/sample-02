@@ -3,7 +3,7 @@
   "module": "src/index.js",
   "type": "module",
   "scripts": {
-    "dev": "pm2 src/index.js && pm2 logs"
+    "dev": "pm2 start src/index.js && pm2 logs"
   },
   "dependencies": {
     "express": "^4.19.2"

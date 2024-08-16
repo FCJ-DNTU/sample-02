@@ -19,7 +19,14 @@ bash docker_install.sh
 You should start server with bash script, build a docker image named `my-image` and run docker container named `my-server` from this image 
 
 ```bash
-sta start.sh --image="my-image" --container="my-server"
+bash start.sh --image="my-image" --container="my-server"
+```
+
+You can stop the running container like this
+```bash
+bash stop.sh --container="my-server"
+# Or use -r to remove the container
+bash stop.sh -r --container="host"
 ```
 
 Note: Docker container listens on PORT `3000` and receive request from Host in PORT `80`.
